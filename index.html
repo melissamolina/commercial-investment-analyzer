@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commercial Investment Analyzer™ | HUT Realty & Spartan Capital Group</title>
+  <meta name="description" content="Estimate NOI, cap rate, annual cash flow, and ROI for a commercial real estate opportunity using the Commercial Investment Analyzer™." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Commercial Investment Analyzer™" />
+  <meta property="og:description" content="A professional tool to estimate the financial performance of your next commercial investment." />
+  <meta property="og:image" content="/assets/commercial-investment-analyzer-preview.png" />
+  <meta property="og:image:width" content="1536" />
+  <meta property="og:image:height" content="1024" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Commercial Investment Analyzer™" />
+  <meta name="twitter:description" content="Estimate key commercial investment metrics in one professional analysis." />
+  <meta name="twitter:image" content="/assets/commercial-investment-analyzer-preview.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-row">
+      <a class="brand brand-hut" href="https://www.hutteam.com/" target="_blank" rel="noopener" aria-label="Visit HUT Realty">
+        <img src="assets/hut-realty-logo.jpg" alt="HUT Realty" />
+      </a>
+      <span class="brand-divider"></span>
+      <a class="brand brand-spartan" href="https://www.spartanenterprises.com/" target="_blank" rel="noopener" aria-label="Visit Spartan Capital Group">
+        <img src="assets/spartan-capital-group-logo.jpg" alt="Spartan Capital Group" />
+      </a>
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="#analyzer">Analyzer</a>
+      <a href="#results-guide">Understanding Results</a>
+      <a href="#team">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-shell" id="analyzer">
+      <div class="hero-heading">
+        <h1>Commercial Investment Analyzer<sup>™</sup></h1>
+        <p>A professional tool to estimate the financial performance of your next commercial investment.</p>
+      </div>
+
+      <div class="analyzer-grid glass-panel">
+        <form id="analysis-form" class="input-panel" novalidate>
+          <h2><span class="section-icon">▥</span> Property Information</h2>
+          <label>Property Type
+            <select id="propertyType">
+              <option>Retail</option><option>Office</option><option>Industrial</option><option>Multifamily</option><option>Hospitality</option><option>Mixed Use</option><option>Land</option><option>Other</option>
+            </select>
+          </label>
+          <label>Purchase Price
+            <div class="money-input"><span>$</span><input id="purchasePrice" type="number" min="0" step="1000" value="1250000" required></div>
+          </label>
+          <label>Down Payment
+            <div class="split-input"><div class="money-input"><span>$</span><input id="downPayment" type="number" min="0" step="1000" value="250000" required></div><output id="downPercent">20.0%</output></div>
+          </label>
+          <label>Monthly Rental Income
+            <div class="money-input"><span>$</span><input id="monthlyIncome" type="number" min="0" step="100" value="12500" required></div>
+          </label>
+          <label>Monthly Operating Expenses
+            <div class="money-input"><span>$</span><input id="monthlyExpenses" type="number" min="0" step="100" value="3400" required></div>
+          </label>
+          <label>Estimated Monthly Debt Service <span class="optional">optional</span>
+            <div class="money-input"><span>$</span><input id="monthlyDebt" type="number" min="0" step="100" value="0"></div>
+          </label>
+          <div class="upload-analysis">
+            <div><strong>Already have an analysis?</strong><span>Attach an OM, rent roll, T-12, PDF, Excel, or CSV for reference.</span></div>
+            <label class="upload-control">Upload File<input id="analysisUpload" type="file" accept=".pdf,.xlsx,.xls,.csv"></label>
+            <small id="uploadName">No file selected</small>
+          </div>
+          <button class="primary-btn" type="submit">Run Investment Analysis</button>
+          <p class="secure-note">Your information is used only to generate this analysis.</p>
+        </form>
+
+        <section class="results-panel" aria-live="polite">
+          <div class="result-tabs"><span class="active">Overview</span><span>ROI Analysis</span><span>Cash Flow</span><span>NOI Details</span></div>
+          <h2><span class="section-icon">↗</span> Investment Analysis</h2>
+          <div class="metric-grid">
+            <article><small>NOI (Annual)</small><strong id="noiMetric">$109,200</strong><span>Annual</span></article>
+            <article><small>Cap Rate</small><strong id="capRateMetric">8.74%</strong><span>Estimated</span></article>
+            <article><small>Annual Cash Flow</small><strong id="cashFlowMetric">$109,200</strong><span>Estimated</span></article>
+            <article class="roi-card"><small>Estimated ROI</small><strong id="roiMetric">43.68%</strong><span id="roiLabel">Estimate</span></article>
+          </div>
+          <div class="analysis-lower">
+            <article class="gauge-card">
+              <div class="card-title">Estimated ROI</div>
+              <div class="gauge" id="gauge"><div class="gauge-mask"><strong id="gaugeValue">43.68%</strong><span>ROI</span></div></div>
+              <p id="gaugeCaption">Based on the information entered</p>
+            </article>
+            <article class="summary-card">
+              <div class="card-title">Investment Summary</div>
+              <dl>
+                <div><dt>Purchase Price</dt><dd id="summaryPurchase">$1,250,000</dd></div>
+                <div><dt>Down Payment</dt><dd id="summaryDown">$250,000</dd></div>
+                <div><dt>Annual Rental Income</dt><dd id="summaryIncome">$150,000</dd></div>
+                <div><dt>Annual Operating Expenses</dt><dd id="summaryExpenses">$40,800</dd></div>
+                <div><dt>Annual Debt Service</dt><dd id="summaryDebt">$0</dd></div>
+                <div class="highlight"><dt>Net Operating Income (NOI)</dt><dd id="summaryNoi">$109,200</dd></div>
+              </dl>
+            </article>
+          </div>
+          <div class="action-row">
+            <button id="saveAnalysis" class="secondary-btn" type="button">Save Analysis</button>
+            <button id="pdfExport" class="primary-btn" type="button">Download My Analysis (PDF)</button>
+            <a class="secondary-btn button-link" href="#team">Call Our Team</a>
+          </div>
+          <p id="saveStatus" class="form-status"></p>
+        </section>
+      </div>
+
+      <section class="results-guide glass-panel" id="results-guide">
+        <div class="guide-grid">
+          <article><h3>NOI (Net Operating Income)</h3><p>The property’s income after operating expenses, before financing costs.</p></article>
+          <article><h3>Cap Rate</h3><p>A common metric used to compare the income potential of commercial properties.</p></article>
+          <article><h3>Annual Cash Flow</h3><p>The estimated income remaining after operating expenses and entered debt service.</p></article>
+          <article><h3>Estimated ROI</h3><p>An estimate of annual cash flow compared with the down payment entered.</p></article>
+        </div>
+        <aside class="disclaimer">
+          <p>This analysis is for educational purposes only and is based on the information provided. Results are estimates, not guarantees. Actual performance can vary with financing terms, occupancy, leases, taxes, insurance, market conditions, repairs, and other factors. Always complete appropriate due diligence and consult qualified professionals before making an investment decision.</p>
+          <a class="primary-btn button-link" href="#team">Call Our Team</a>
+        </aside>
+      </section>
+    </section>
+
+    <section class="team-section" id="team">
+      <h2>Contact</h2>
+      <div class="team-grid">
+        <article class="team-card">
+          <img src="assets/christopher-profile.png" alt="Christopher Kiblin" />
+          <h3>Christopher Kiblin</h3>
+          <a href="tel:+14436685727">(443) 668-5727</a>
+        </article>
+        <article class="team-card">
+          <img src="assets/melissa-profile.png" alt="Melissa Chaves Molina" />
+          <h3>Melissa Chaves Molina</h3>
+          <a href="tel:+18139933439">(813) 993-3439</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brands">
+      <a href="https://www.hutteam.com/" target="_blank" rel="noopener"><img src="assets/hut-realty-logo.jpg" alt="HUT Realty"><span>www.hutteam.com</span></a>
+      <a href="https://www.spartanenterprises.com/" target="_blank" rel="noopener"><img src="assets/spartan-capital-group-logo.jpg" alt="Spartan Capital Group"><span>www.spartanenterprises.com</span></a>
+    </div>
+    <div class="footer-links"><button data-modal="privacy">Privacy Policy</button><button data-modal="disclaimer">Disclaimer</button></div>
+    <p>© 2026 Commercial Investment Analyzer™. All rights reserved.</p>
+  </footer>
+
+  <dialog id="leadDialog">
+    <form id="leadForm" name="analysis-download" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <button class="dialog-close" type="button" id="leadClose" aria-label="Close">×</button>
+      <input type="hidden" name="form-name" value="analysis-download">
+      <p class="hidden"><label>Do not fill this out: <input name="bot-field"></label></p>
+      <h2>Download Your Analysis</h2>
+      <p>Enter your name and email to generate the PDF. Phone number is optional.</p>
+      <label>Full Name<input name="name" id="leadName" required autocomplete="name"></label>
+      <label>Email<input name="email" id="leadEmail" type="email" required autocomplete="email"></label>
+      <label>Phone <span class="optional">optional</span><input name="phone" id="leadPhone" type="tel" autocomplete="tel"></label>
+      <input type="hidden" name="property-type" id="leadPropertyType">
+      <input type="hidden" name="purchase-price" id="leadPurchasePrice">
+      <input type="hidden" name="estimated-noi" id="leadNoi">
+      <input type="hidden" name="estimated-cap-rate" id="leadCapRate">
+      <input type="hidden" name="estimated-cash-flow" id="leadCashFlow">
+      <input type="hidden" name="estimated-roi" id="leadRoi">
+      <input type="hidden" name="uploaded-file" id="leadUploadedFile">
+      <button class="primary-btn" type="submit">Create My PDF</button>
+      <p id="leadStatus" class="form-status"></p>
+    </form>
+  </dialog>
+
+  <dialog id="infoDialog"><article><button class="dialog-close" onclick="this.closest('dialog').close()">×</button><div id="infoContent"></div></article></dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
